@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var connect = require('connect');
 
 // lag instans
 var app = express();
@@ -8,7 +9,10 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 // definer at vi bruker jade
 app.set('view engine', 'jade');
-app.use(express.bodyParser());
+
+app.use(connect.urlencoded())
+app.use(connect.json())
+
 // for å serve css
 app.use('/public', express.static(__dirname + '/public'));
 
