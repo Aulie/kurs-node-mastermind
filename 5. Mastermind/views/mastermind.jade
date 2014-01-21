@@ -1,7 +1,7 @@
 doctype html
 html
 	head
-		title=title
+		title="Mastermind"
 		link(href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css", rel="stylesheet")
 		link(href="/public/mastermind.css", rel="stylesheet")
 	body
@@ -20,17 +20,17 @@ html
 						div.previousGuesses
 							each guess in guesses
 								div.row
-									div.col-xs-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color0}")  
-									div.col-xs-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color1}")  
-									div.col-xs-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color2}")  
-									div.col-xs-1.glyphicon.glyphicon-certificate(class="#{guess.guess.color3}")   
+									div.col-xs-1.glyphicon.glyphicon-certificate(class="#{guess.colors.color0}")  
+									div.col-xs-1.glyphicon.glyphicon-certificate(class="#{guess.colors.color1}")  
+									div.col-xs-1.glyphicon.glyphicon-certificate(class="#{guess.colors.color2}")  
+									div.col-xs-1.glyphicon.glyphicon-certificate(class="#{guess.colors.color3}")   
 									div.col-xs-3.correct
-										- for (var x = 0; x < guess.correct; x++)
+										- for (var x = 0; x < guess.correctPositionAndColor; x++)
 											span.glyphicon.glyphicon-certificate.Black  
-										- for (var x = 0; x < guess.almostCorrect; x++)
+										- for (var x = 0; x < guess.correctColor; x++)
 											span.glyphicon.glyphicon-certificate.White  
 						div.currentGuess
-							- if (guesses.length > 0 && guesses[guesses.length-1]['correct'] == 4)
+							- if (guesses.length > 0 && guesses[guesses.length-1].correctPositionAndColor == 4)
 								div Gratulerer, du klarte det! :)
 								a.btn.btn-primary(href="/startover") Spill på nytt!
 							- else
