@@ -16,6 +16,8 @@ app.use(connect.json())
 // for å serve css
 app.use('/public', express.static(__dirname + '/public'));
 
+// et previousGuess kan se slik ut
+// {colors: {color0 = 'Red', color1 = 'Green', color2 = 'Blue', color3 = 'Black'}, correctColor: 2, correctPositionAndColor: 1}
 var previousGuesses = []; // for å lagre gjetninger etterhvert som de kommer inn
 var solution = ['Red', 'Red', 'Blue', 'Green']; // fasit
 
@@ -25,18 +27,8 @@ app.get('/', function(req, res) {
 
 app.post('/guess', function(req, res) {
 	console.log(req.body);
-	saveGuess(req.body);
 	res.render('mastermind', {guesses: previousGuesses});
 });
-
-var saveGuess = function(colorsGuessed) {
-	previousGuesses.push({colors: colorsGuessed, correctColor: 0, correctPositionAndColor: 0});
-}
-
-//app.get('/startover', function(req, res) {
-//  previousGuesses = [];
-//  res.render('mastermind', {guesses: previousGuesses});
-//});
 
 app.listen(3000);
 console.log('Server listening on port 3000');
